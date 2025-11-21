@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+    redpanda:
+        image: redpandadata/redpanda:v23.2.12
+        container_name: redpanda
+        command:
+            - redpanda
+            - start
+            - --overprovisioned
+            - --smp=1
+            - --memory=1G
+            - --reserve-memory=0M
+            - --check=false
+        ports:
+            - "9092:9092"
+            - "9644:9644"
