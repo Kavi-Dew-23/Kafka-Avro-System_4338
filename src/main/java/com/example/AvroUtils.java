@@ -1,5 +1,6 @@
 package com.example;
 
+import java.io.IOException;
 import org.apache.avro.io.*;
 import org.apache.avro.specific.SpecificDatumReader;
 import org.apache.avro.specific.SpecificDatumWriter;
@@ -18,9 +19,9 @@ public class AvroUtils {
         return out.toByteArray();
     }
 
-    public static Order deserialize(byte[] data) throws Exception {
+    public static Order deserialize(byte[] data) throws IOException {
         DatumReader<Order> reader = new SpecificDatumReader<>(Order.class);
-        BinaryDecoder decoder = DecoderFactory.get().binaryDecoder(data, null);
+        Decoder decoder = DecoderFactory.get().binaryDecoder(data, null);
         return reader.read(null, decoder);
     }
 }
