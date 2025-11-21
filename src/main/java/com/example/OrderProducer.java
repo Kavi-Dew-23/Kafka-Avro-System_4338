@@ -24,7 +24,13 @@ public class OrderProducer {
 
         // Produce 10 messages
         for (int i = 0; i < 10; i++) {
-            Order order = new Order("id-" + i, "Item1", 99.9f);
+            Order order;
+
+            if (i == 5) {
+                order = new Order("id-" + i, "BAD", 99.9f);  // <-- BAD MESSAGE
+            } else {
+                order = new Order("id-" + i, "Item1", 99.9f);
+            }
 
             byte[] avroBytes = AvroUtils.serialize(order);
 
